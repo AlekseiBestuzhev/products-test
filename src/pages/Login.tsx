@@ -1,7 +1,7 @@
 import { cn } from "@/shared/lib";
-import logo from "@/shared/assets/logo.svg";
-import { Button } from "@/shared/ui";
 import { Link } from "react-router-dom";
+import { Button, Input, Checkbox } from "@/shared/ui";
+import { LockIcon, LogoIcon, MailIcon } from "@/shared/assets";
 
 export const Login = () => {
   return (
@@ -13,7 +13,7 @@ export const Login = () => {
       )}
     >
       <div className="w-full px-14.5 py-12 rounded-[29px] bg-[linear-gradient(180deg,#f6f6f6_0%,#ffffff_60%)]">
-        <img src={logo} className="mx-auto" />
+        <LogoIcon className="mx-auto mb-8 rounded-full shadow-xl/5" />
         <h1 className="text-[40px] font-semibold leading-[110%] tracking-[-0.6px] text-center mb-3">
           Добро пожаловать!
         </h1>
@@ -21,18 +21,9 @@ export const Login = () => {
           Пожалуйста авторизуйтесь
         </h2>
         <form className="flex flex-col gap-5">
-          <label className="flex flex-col gap-1">
-            Почта
-            <input type="text" className="p-3 border-2 border-gray-dark rounded-xl" />
-          </label>
-          <label className="flex flex-col gap-1">
-            Пароль
-            <input type="text" className="p-3 border-2 border-gray-dark rounded-xl" />
-          </label>
-          <label className="flex gap-2 text-gray-400">
-            <input type="checkbox" className="p-3 border-2 border-gray-dark rounded-xl" />
-            Запомнить данные
-          </label>
+          <Input type="email" label="Почта" iconSlot={<MailIcon />} value={142234} />
+          <Input type="password" label="Пароль" iconSlot={<LockIcon />} value={142234} />
+          <Checkbox label="Запомнить данные" />
           <Button type="submit" size="lg">
             Войти
           </Button>
