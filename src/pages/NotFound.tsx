@@ -4,9 +4,9 @@ import { Button } from "@/shared/ui";
 
 export const NotFound = () => {
   return (
-    <div className="flex flex-col items-center gap-5 mt-20">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-12">
       <h1 className="text-3xl font-bold">404 - Страница не найдена</h1>
-      <Button size="lg" as={Link} to={ROUTE_PATH.PRODUCTS}>
+      <Button size="lg" as={Link} to={ROUTE_PATH.PRODUCTS} className="max-w-105" isFullWidth>
         Вернуться к продуктам
       </Button>
     </div>

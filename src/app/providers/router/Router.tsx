@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
+import { Products, Login, NotFound, InDev } from "@/pages";
 import { ROUTE_PATH } from "@/shared/constants";
-import { Products, Login, NotFound } from "@/pages";
-import ErrorBoundary from "./ErrorBoundary";
+import { ErrorBoundary } from "./ErrorBoundary";
 import { AuthLayout } from "./LoginLayout";
 import { MainLayout } from "./MainLayout";
 
@@ -22,6 +22,14 @@ const router = createBrowserRouter([
         element: (
           <AuthLayout>
             <Login />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: ROUTE_PATH.REGISTER,
+        element: (
+          <AuthLayout>
+            <InDev />
           </AuthLayout>
         ),
       },
