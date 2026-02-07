@@ -5,3 +5,8 @@ export { EyeIcon } from "./EyeIcon";
 export { CrossIcon } from "./CrossIcon";
 export { GearIcon } from "./GearIcon";
 export { UserIcon } from "./UserIcon";
+export { SearchIcon } from "./SearchIcon";
+export { WebIcon } from "./WebIcon";
+export { BellIcon } from "./BellIcon";
+export { SettingsIcon } from "./SettingsIcon";
+export { LogoutIcon } from "./LogoutIcon";

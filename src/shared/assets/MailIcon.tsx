@@ -2,48 +2,18 @@ import { type SVGProps, type Ref, forwardRef, memo } from "react";
 
 const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
-    width={24}
-    height={24}
-    viewBox="0 0 24 24"
+    width={28}
+    height={28}
+    viewBox="0 0 28 28"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     ref={ref}
     {...props}
   >
-    <g filter="url(#filter0_i_1013_109)">
-      <path
-        d="M2 7L10.1649 12.7154C10.8261 13.1783 11.1567 13.4097 11.5163 13.4993C11.8339 13.5785 12.1661 13.5785 12.4837 13.4993C12.8433 13.4097 13.1739 13.1783 13.8351 12.7154L22 7M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z"
-        stroke="#EDEDED"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </g>
-    <defs>
-      <filter
-        id="filter0_i_1013_109"
-        x={0.999939}
-        y={3}
-        width={22.0001}
-        height={22}
-        filterUnits="userSpaceOnUse"
-        colorInterpolationFilters="sRGB"
-      >
-        <feFlood floodOpacity={0} result="BackgroundImageFix" />
-        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-          result="hardAlpha"
-        />
-        <feOffset dy={4} />
-        <feGaussianBlur stdDeviation={2} />
-        <feComposite in2="hardAlpha" operator="arithmetic" k2={-1} k3={1} />
-        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.17 0" />
-        <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1013_109" />
-      </filter>
-    </defs>
+    <path
+      d="M24.5 5.25H3.5C3.26794 5.25 3.04538 5.34219 2.88128 5.50628C2.71719 5.67038 2.625 5.89294 2.625 6.125V21C2.625 21.4641 2.80937 21.9092 3.13756 22.2374C3.46575 22.5656 3.91087 22.75 4.375 22.75H23.625C24.0891 22.75 24.5342 22.5656 24.8624 22.2374C25.1906 21.9092 25.375 21.4641 25.375 21V6.125C25.375 5.89294 25.2828 5.67038 25.1187 5.50628C24.9546 5.34219 24.7321 5.25 24.5 5.25ZM22.2502 7L14 14.5633L5.74984 7H22.2502ZM23.625 21H4.375V8.11453L13.4083 16.3953C13.5697 16.5435 13.7809 16.6257 14 16.6257C14.2191 16.6257 14.4303 16.5435 14.5917 16.3953L23.625 8.11453V21Z"
+      fill="#878787"
+    />
   </svg>
 );
 const ForwardRef = forwardRef(SvgComponent);

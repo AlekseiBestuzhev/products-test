@@ -40,10 +40,21 @@ type Props = ComponentPropsWithoutRef<"input"> & {
   iconSlot?: ReactNode;
   label?: string;
   error?: string;
+  wrapperClassName?: string;
 };
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
-  const { className, iconSlot, type, onChange, value, label, error, ...restProps } = props;
+  const {
+    className,
+    iconSlot,
+    type,
+    onChange,
+    value,
+    label,
+    error,
+    wrapperClassName,
+    ...restProps
+  } = props;
   const [visible, setVisible] = useState(false);
   const id = useId();
 
@@ -66,7 +77,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
   });
 
   return (
-    <div className="relative flex flex-col gap-1">
+    <div className={cn("relative flex flex-col gap-1", wrapperClassName)}>
       {iconSlot && (
         <div className={cn("absolute left-4 pointer-events-none", label ? "top-11.5" : "top-3")}>
           {iconSlot}
