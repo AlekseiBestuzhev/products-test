@@ -1,10 +1,16 @@
-import { cn } from "@/shared/lib";
-import { Link } from "react-router-dom";
-import { LogoIcon } from "@/shared/assets";
-import { LoginForm } from "@/features/login";
+import { type LoginFormData, useLogin, LoginForm } from "@/features/auth";
 import { ROUTE_PATH } from "@/shared/constants";
+import { LogoIcon } from "@/shared/assets";
+import { Link } from "react-router-dom";
+import { cn } from "@/shared/lib";
 
 export const Login = () => {
+  const { mutateAsync: login } = useLogin();
+
+  const handleSubmit = async (data: LoginFormData) => {
+    await login(data);
+  };
+
   return (
     <>
       <LogoIcon className="mx-auto mb-8 rounded-full shadow-xl/5" />
@@ -14,7 +20,7 @@ export const Login = () => {
       <h2 className="text-lg font-medium leading-[150%] text-center text-gray-400 mb-8">
         Пожалуйста авторизуйтесь
       </h2>
-      <LoginForm />
+      <LoginForm onSubmit={handleSubmit} />
       <p
         className={cn(
           "text-sm text-center text-gray-400 mt-4 mb-10 flex gap-4 items-center",

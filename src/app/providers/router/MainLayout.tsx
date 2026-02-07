@@ -1,6 +1,9 @@
-import { type PropsWithChildren } from "react";
+import { useLogout } from "@/features/auth";
+import { Outlet } from "react-router-dom";
 
-export const MainLayout = ({ children }: PropsWithChildren) => {
+export const MainLayout = () => {
+  const logout = useLogout();
+
   return (
     <div className="min-h-screen flex flex-col gap-8 p-5">
       <header className="bg-white flex items-center justify-between py-5.5 px-7.5 rounded-xl">
@@ -11,9 +14,16 @@ export const MainLayout = ({ children }: PropsWithChildren) => {
           placeholder="Найти"
         />
         <div className="h-14 w-px bg-gray-200" role="separator" />
-        <div className="h-6 w-50 bg-gray-200" />
+        <div className="flex gap-1">
+          <div className="h-6 w-50 bg-gray-200" />
+          <button className="px-2 border border-gray-200 cursor-pointer" onClick={logout}>
+            logout
+          </button>
+        </div>
       </header>
-      <main className="flex-1 bg-white rounded-xl p-7.5">{children}</main>
+      <main className="flex-1 bg-white rounded-xl p-7.5">
+        <Outlet />
+      </main>
     </div>
   );
 };

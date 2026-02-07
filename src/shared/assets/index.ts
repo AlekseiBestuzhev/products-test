@@ -4,3 +4,4 @@ export { LockIcon } from "./LockIcon";
 export { EyeIcon } from "./EyeIcon";
 export { CrossIcon } from "./CrossIcon";
 export { GearIcon } from "./GearIcon";
+export { UserIcon } from "./UserIcon";

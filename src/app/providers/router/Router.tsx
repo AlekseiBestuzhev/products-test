@@ -1,45 +1,40 @@
-import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
-import { Products, Login, NotFound, InDev } from "@/pages";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home, Login, NotFound, InDev } from "@/pages";
 import { ROUTE_PATH } from "@/shared/constants";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { AuthLayout } from "./LoginLayout";
 import { MainLayout } from "./MainLayout";
+import { AuthGuard } from "./AuthGuard";
 
 const router = createBrowserRouter([
   {
     element: (
       <ErrorBoundary>
-        <Outlet />
+        <AuthGuard />
       </ErrorBoundary>
     ),
     children: [
       {
-        path: ROUTE_PATH.HOME,
-        element: <Navigate to={ROUTE_PATH.PRODUCTS} replace />,
+        element: <AuthLayout />,
+        children: [
+          {
+            path: ROUTE_PATH.LOGIN,
+            element: <Login />,
+          },
+          {
+            path: ROUTE_PATH.REGISTER,
+            element: <InDev />,
+          },
+        ],
       },
       {
-        path: ROUTE_PATH.LOGIN,
-        element: (
-          <AuthLayout>
-            <Login />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: ROUTE_PATH.REGISTER,
-        element: (
-          <AuthLayout>
-            <InDev />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: ROUTE_PATH.PRODUCTS,
-        element: (
-          <MainLayout>
-            <Products />
-          </MainLayout>
-        ),
+        element: <MainLayout />,
+        children: [
+          {
+            path: ROUTE_PATH.HOME,
+            element: <Home />,
+          },
+        ],
       },
       {
         path: "*",

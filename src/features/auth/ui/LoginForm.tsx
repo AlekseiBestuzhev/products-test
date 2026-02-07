@@ -1,33 +1,32 @@
 import { Button, ControlledInput, ControlledCheckbox } from "@/shared/ui";
 import { loginSchema, type LoginFormData } from "../model/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LockIcon, MailIcon } from "@/shared/assets";
+import { LockIcon, UserIcon } from "@/shared/assets";
 import { useForm } from "react-hook-form";
 
 const defaultValues: LoginFormData = {
-  email: "",
+  username: "",
   password: "",
   rememberMe: false,
 };
 
-export const LoginForm = () => {
-  const { control, handleSubmit } = useForm<LoginFormData>({
+interface LoginFormProps {
+  onSubmit: (data: LoginFormData) => Promise<void>;
+}
+
+export const LoginForm = ({ onSubmit }: LoginFormProps) => {
+  const { control, handleSubmit, formState } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues,
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
-  };
-
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
       <ControlledInput
-        name="email"
+        name="username"
         control={control}
-        type="email"
-        label="Почта"
-        iconSlot={<MailIcon />}
+        label="Имя пользователя"
+        iconSlot={<UserIcon />}
       />
 
       <ControlledInput
@@ -40,7 +39,7 @@ export const LoginForm = () => {
 
       <ControlledCheckbox name="rememberMe" control={control} label="Запомнить данные" />
 
-      <Button type="submit" size="lg">
+      <Button type="submit" size="lg" isLoading={formState.isSubmitting}>
         Войти
       </Button>
     </form>

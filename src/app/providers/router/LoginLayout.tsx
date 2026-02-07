@@ -1,7 +1,7 @@
-import { type PropsWithChildren } from "react";
 import { cn } from "@/shared/lib";
+import { Outlet } from "react-router-dom";
 
-export const AuthLayout = ({ children }: PropsWithChildren) => {
+export const AuthLayout = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div
@@ -12,7 +12,7 @@ export const AuthLayout = ({ children }: PropsWithChildren) => {
         )}
       >
         <section className="w-full px-14.5 py-12 rounded-[29px] bg-[linear-gradient(180deg,#f6f6f6_0%,#ffffff_60%)]">
-          {children}
+          <Outlet />
         </section>
       </div>
     </div>
