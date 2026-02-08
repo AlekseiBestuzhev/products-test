@@ -1,26 +1,22 @@
-import { ProductsTableRow } from "./ProductsTableRow";
+import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { productsTableColumns } from "../model/tableCols";
 import type { Product } from "@/shared/api";
 import { cn } from "@/shared/lib";
-import { Checkbox } from "@/shared/ui/Checkbox";
-import { useState } from "react";
 
-const COMMON_CLASSES = "px-3 py-6 border-b border-b-gray-300";
-
-interface ProductsTableProps {
+interface Props {
   products: Product[];
   isFetching?: boolean;
 }
 
-export const ProductsTable = ({ products, isFetching }: ProductsTableProps) => {
-  const [selected, setSelected] = useState<number[]>([]);
-
-  const toggleSelect = (id: number) => {
-    setSelected(prev => (prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]));
-  };
-
-  const toggleSelectAll = () => {
-    setSelected(prev => (prev.length === products.length ? [] : products.map(x => x.id)));
-  };
+export const ProductsTable = ({ products, isFetching }: Props) => {
+  const table = useReactTable({
+    data: products,
+    columns: productsTableColumns,
+    enableRowSelection: true,
+    enableColumnResizing: true,
+    columnResizeMode: "onChange",
+    getCoreRowModel: getCoreRowModel(),
+  });
 
   return (
     <div
@@ -29,40 +25,49 @@ export const ProductsTable = ({ products, isFetching }: ProductsTableProps) => {
         isFetching && "cursor-wait opacity-50 pointer-events-none",
       )}
     >
-      <table className="w-full text-left text-sm">
-        <thead className="text-gray-400 text-base">
-          <tr>
-            <th className="px-3 py-6 pl-3.5 border-b border-b-gray-300">
-              <Checkbox checked={selected.length === products.length} onChange={toggleSelectAll} />
-            </th>
-            <th className="px-3 py-6 border-b border-b-gray-300">Наименование</th>
-            <th align="center" className={COMMON_CLASSES}>
-              Вендор
-            </th>
-            <th align="center" className={COMMON_CLASSES}>
-              Артикул
-            </th>
-            <th align="center" className={COMMON_CLASSES}>
-              Оценка
-            </th>
-            <th align="center" className={COMMON_CLASSES}>
-              Цена, ₽
-            </th>
-            <th align="center" className={COMMON_CLASSES}>
-              Количество
-            </th>
-            <th className={COMMON_CLASSES} />
-          </tr>
+      <table className="w-full table-fixed text-sm">
+        <thead>
+          {table.getHeaderGroups().map(hg => (
+            <tr key={hg.id}>
+              {hg.headers.map(header => (
+                <th
+                  key={header.id}
+                  style={{ width: header.getSize() }}
+                  align={header.id === "title" ? "left" : "center"}
+                  className="px-3 py-6 border-b border-gray-300 relative text-gray-400"
+                >
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                  {header.column.getCanResize() && (
+                    <div
+                      onMouseDown={header.getResizeHandler()}
+                      className="absolute right-0 top-0 h-full w-1 cursor-col-resize"
+                    />
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
         </thead>
 
         <tbody>
-          {products.map(p => (
-            <ProductsTableRow
-              key={p.id}
-              product={p}
-              selected={selected.includes(p.id)}
-              onSelect={toggleSelect}
-            />
+          {table.getRowModel().rows.map(row => (
+            <tr
+              key={row.id}
+              className={cn(
+                "border-b border-gray-300 hover:bg-gray-50 transition",
+                "border-l-6 border-l-transparent hover:bg-gray-50 hover:border-l-blue-primary",
+              )}
+            >
+              {row.getVisibleCells().map(cell => (
+                <td
+                  key={cell.id}
+                  className="p-3"
+                  align={cell.column.id === "title" ? "left" : "center"}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
           ))}
         </tbody>
       </table>
