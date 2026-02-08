@@ -17,8 +17,8 @@ export const Header = ({ children }: PropsWithChildren) => {
               {value?.count && (
                 <p
                   className={cn(
-                    "absolute -top-2 -right-2 size-6 rounded-full flex items-center justify-center",
-                    "text-sm bg-blue-secondary text-white border-2 border-white",
+                    "absolute top-0 right-0 size-5.5 rounded-full flex items-center justify-center",
+                    "text-sm bg-blue-secondary text-white outline-3 outline-white",
                   )}
                 >
                   {value.count}

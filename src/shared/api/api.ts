@@ -1,4 +1,4 @@
-import type { LoginPayload, MeResponse } from "./types";
+import type { LoginPayload, MeResponse, ProductsResponse } from "./types";
 import axios, { type AxiosResponse } from "axios";
 import { tokenStorage } from "../lib";
 
@@ -80,5 +80,11 @@ export const authAPI = {
   },
   login: async (payload: LoginPayload): Promise<AxiosResponse<MeResponse>> => {
     return await axiosInstance.post<MeResponse>("/auth/login", payload);
+  },
+};
+
+export const productsAPI = {
+  get: async (): Promise<AxiosResponse<ProductsResponse>> => {
+    return await axiosInstance.get("/products");
   },
 };

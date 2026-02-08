@@ -10,3 +10,8 @@ export { WebIcon } from "./WebIcon";
 export { BellIcon } from "./BellIcon";
 export { SettingsIcon } from "./SettingsIcon";
 export { LogoutIcon } from "./LogoutIcon";
+export { PlusIcon } from "./PlusIcon";
+export { PlusCircleIcon } from "./PlusCircleIcon";
+export { ReloadIcon } from "./ReloadIcon";
+export { SortIcon } from "./SortIcon";
+export { ExtraIcon } from "./ExtraIcon";

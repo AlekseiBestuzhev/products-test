@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ElementRef, ElementType, ForwardedRef } 
 import { forwardRef } from "react";
 import { cn } from "../lib";
 
-type ButtonVariant = "filled" | "ghost";
+type ButtonVariant = "filled" | "outlined" | "ghost";
 
 const VARIANT = {
   filled: cn(
@@ -11,14 +11,15 @@ const VARIANT = {
     "bg-[linear-gradient(to_bottom,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_100%)]",
     "bg-[linear-gradient(to_bottom,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_100%)]",
   ),
+  outlined: "bg-transparent text-gray-dark border-2 border-gray-dark hover:border-blue-primary",
   ghost: "bg-transparent text-gray-500 hover:text-gray-600",
 } satisfies Record<ButtonVariant, string>;
 
 type ButtonSize = "sm" | "md" | "lg" | "unset";
 
 const SIZE = {
-  sm: "min-h-[27px] px-2 py-0.5 rounded-xl text-sm",
-  md: "min-h-[42px] px-5 py-2 rounded-md text-base font-semibold",
+  sm: "min-h-[27px] px-2 py-0 rounded-2xl text-sm",
+  md: "min-h-[42px] px-4 py-2 rounded-md text-base font-semibold",
   lg: "min-h-[54px] px-5 py-3 rounded-xl text-lg font-semibold leading-[120%] tracking-[-0.18px]",
   unset: "size-fit",
 } satisfies Record<ButtonSize, string>;
@@ -52,7 +53,7 @@ const ButtonPolymorph = <T extends ElementType = "button">(
   return (
     <Component
       className={cn(
-        "flex items-center justify-center gap-4 cursor-pointer select-none transition duration-300",
+        "flex items-center justify-center gap-3 cursor-pointer select-none transition duration-300",
         VARIANT[variant],
         SIZE[size],
         disabled && "cursor-not-allowed opacity-50",

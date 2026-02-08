@@ -15,3 +15,22 @@ export interface LoginPayload {
   password: string;
   expiresInMins?: number;
 }
+
+export interface Product {
+  id: number;
+  title: string;
+  category: string;
+  brand: string;
+  sku: string;
+  rating: number;
+  price: number;
+  stock: number;
+  images: string[];
+}
+
+export interface ProductsResponse {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+}

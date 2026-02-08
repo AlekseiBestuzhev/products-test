@@ -15,6 +15,7 @@ export const Checkbox = forwardRef<HTMLInputElement, Props>(
       <label
         className={cn(
           "flex items-center gap-2 text-gray-400 cursor-pointer select-none",
+          error && "text-red-500",
           containerClassName,
         )}
       >
@@ -23,7 +24,7 @@ export const Checkbox = forwardRef<HTMLInputElement, Props>(
           type="checkbox"
           {...props}
           className={cn(
-            "appearance-none grid place-content-center",
+            "appearance-none grid place-content-center cursor-pointer",
             "size-4.5 rounded border-2 border-gray-dark bg-white",
             "checked:bg-blue-primary checked:border-blue-primary checked:before:scale-100",
             "before:content-[''] before:w-2.5 before:h-2.5 before:scale-0",
