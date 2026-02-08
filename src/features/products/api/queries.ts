@@ -1,10 +1,14 @@
+import { productsAPI, type ProductsQueryParams } from "@/shared/api";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/shared/constants";
-import { productsAPI } from "@/shared/api";
 
-export const useGetProducts = () => {
+export const useGetProducts = (params: ProductsQueryParams) => {
   return useQuery({
-    queryKey: [QUERY_KEYS.PRODUCTS],
-    queryFn: () => productsAPI.get(),
+    queryKey: [
+      QUERY_KEYS.PRODUCTS,
+      ...Object.entries(params).map(([key, value]) => `${key}=${value}`),
+    ],
+    queryFn: () => productsAPI.get(params),
+    enabled: Object.keys(params).length > 0,
   });
 };

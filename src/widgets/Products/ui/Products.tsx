@@ -1,9 +1,19 @@
+import type { ProductsQueryParams } from "@/shared/api";
 import { useGetProducts } from "@/features/products";
 import { ProductsTable } from "./ProductsTable";
+import { useQueryParams } from "@/shared/lib";
 import { LoadingSpinner } from "@/shared/ui";
+import { useEffect } from "react";
 
 export const Products = () => {
-  const { data, isLoading, isFetching } = useGetProducts();
+  const { params, setParams } = useQueryParams<ProductsQueryParams>();
+  const { data, isLoading, isFetching } = useGetProducts(params);
+
+  useEffect(() => {
+    if (!Object.keys(params).length) {
+      setParams({ skip: 0, limit: 10 });
+    }
+  }, []);
 
   if (isLoading)
     return (

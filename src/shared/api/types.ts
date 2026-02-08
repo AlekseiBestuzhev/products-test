@@ -34,3 +34,9 @@ export interface ProductsResponse {
   skip: number;
   limit: number;
 }
+
+export interface ProductsQueryParams {
+  q: string;
+  skip: number;
+  limit: number;
+}

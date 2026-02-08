@@ -1,4 +1,4 @@
-import { useEffect, useState, type ComponentPropsWithoutRef } from "react";
+import { memo, useEffect, useState, type ComponentPropsWithoutRef } from "react";
 import { SearchIcon } from "@/shared/assets";
 import { useDebounce } from "@/shared/lib";
 import { Input } from "@/shared/ui/Input";
@@ -12,7 +12,7 @@ type SearchInputProps = InputProps & {
   delay?: number;
 };
 
-export const SearchInput = (props: SearchInputProps) => {
+export const SearchInput = memo((props: SearchInputProps) => {
   const {
     placeholder = "Найти",
     defaultValue = "",
@@ -39,4 +39,6 @@ export const SearchInput = (props: SearchInputProps) => {
       {...restProps}
     />
   );
-};
+});
+
+SearchInput.displayName = "SearchInput";
