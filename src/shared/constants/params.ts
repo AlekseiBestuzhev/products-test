@@ -19,7 +19,7 @@ const REST_FIELDS = {
   SELECT: "select",
   ACTIONS: "actions",
   SKU: "sku",
-};
+} as const;
 
 export const FIELDS_COLS = {
   ...SORT_FIELDS,

@@ -9,3 +9,7 @@ export const addProductSchema = z.object({
 });
 
 export type AddProductForm = z.infer<typeof addProductSchema>;
+
+export const updateProductSchema = z.object({
+  value: z.string().min(1, REQUIRED_FIELD),
+});

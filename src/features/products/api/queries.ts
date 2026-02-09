@@ -1,8 +1,13 @@
-import { productsAPI, type AddProductPayload, type ProductsQueryParams } from "@/shared/api";
 import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query";
-import { QUERY_KEYS } from "@/shared/constants";
 import { useInvalidateQueries } from "@/shared/lib";
+import { QUERY_KEYS } from "@/shared/constants";
 import { toast } from "react-toastify";
+import {
+  type ProductsQueryParams,
+  type AddProductPayload,
+  type UpdateProductData,
+  productsAPI,
+} from "@/shared/api";
 
 export const useGetProducts = (params: ProductsQueryParams) => {
   return useQuery({
@@ -26,5 +31,18 @@ export const useAddProduct = () => {
       invalidate(QUERY_KEYS.PRODUCTS);
     },
     onError: () => toast.error("Что-то пошло не так, не удалось добавить продукт"),
+  });
+};
+
+export const useUpdateProduct = () => {
+  const invalidate = useInvalidateQueries();
+
+  return useMutation({
+    mutationFn: (payload: UpdateProductData) => productsAPI.update(payload),
+    onSuccess: () => {
+      toast.success("Продукт успешно обновлен");
+      invalidate(QUERY_KEYS.PRODUCTS);
+    },
+    onError: () => toast.error("Что-то пошло не так, не удалось обновить продукт"),
   });
 };

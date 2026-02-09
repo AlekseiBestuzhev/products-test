@@ -46,3 +46,8 @@ export interface ProductsQueryParams {
 }
 
 export type AddProductPayload = Pick<Product, "title" | "price" | "brand" | "sku">;
+
+export interface UpdateProductData {
+  id: number;
+  data: Partial<AddProductPayload>;
+}

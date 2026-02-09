@@ -1,6 +1,7 @@
 import { FIELDS_RUS, FIELDS_COLS } from "@/shared/constants";
 import { createColumnHelper } from "@tanstack/react-table";
 import { PlusIcon, ExtraIcon } from "@/shared/assets";
+import { EditableValue } from "@/features/products";
 import { getCategoryLabel } from "./categories";
 import { Checkbox, Button } from "@/shared/ui";
 import type { Product } from "@/shared/api";
@@ -10,7 +11,7 @@ const columnHelper = createColumnHelper<Product>();
 
 export const productsTableColumns = [
   columnHelper.display({
-    id: "select",
+    id: FIELDS_COLS.SELECT,
     size: 44,
     enableSorting: false,
     header: ({ table }) => (
@@ -37,7 +38,10 @@ export const productsTableColumns = [
           <img src={p.images[0]} className="size-12 rounded bg-gray-200 object-cover shrink-0" />
 
           <div>
-            <h6 className="font-bold">{p.title}</h6>
+            <EditableValue defaultValue={p.title} id={row.original.id} colName={FIELDS_COLS.TITLE}>
+              <h6 className="font-bold">{p.title}</h6>
+            </EditableValue>
+
             <p className="text-sm text-gray-400">{getCategoryLabel(p.category)}</p>
           </div>
         </div>
@@ -48,12 +52,26 @@ export const productsTableColumns = [
   columnHelper.accessor(FIELDS_COLS.BRAND, {
     header: FIELDS_RUS[FIELDS_COLS.BRAND],
     enableSorting: true,
-    cell: info => <span className="font-bold">{info.getValue()}</span>,
+    cell: info => (
+      <EditableValue
+        defaultValue={info.getValue()}
+        id={info.row.original.id}
+        colName={FIELDS_COLS.BRAND}
+        buttonClassName="font-bold"
+      />
+    ),
   }),
 
-  columnHelper.accessor("sku", {
-    header: "Артикул",
+  columnHelper.accessor(FIELDS_COLS.SKU, {
+    header: FIELDS_RUS[FIELDS_COLS.SKU],
     enableSorting: false,
+    cell: info => (
+      <EditableValue
+        defaultValue={info.getValue()}
+        id={info.row.original.id}
+        colName={FIELDS_COLS.SKU}
+      />
+    ),
   }),
 
   columnHelper.accessor(FIELDS_COLS.RATING, {
@@ -82,10 +100,16 @@ export const productsTableColumns = [
         .split(",");
 
       return (
-        <span>
-          {int}
-          <span className="text-gray-400">,{frac}</span>
-        </span>
+        <EditableValue
+          defaultValue={info.getValue()}
+          id={info.row.original.id}
+          colName={FIELDS_COLS.PRICE}
+        >
+          <p>
+            {int}
+            <span className="text-gray-400">,{frac}</span>
+          </p>
+        </EditableValue>
       );
     },
   }),
@@ -98,7 +122,7 @@ export const productsTableColumns = [
       return (
         <div className="w-fit flex gap-1">
           {Array.from({ length: 3 }).map((_, i) => (
-            <span
+            <p
               key={i}
               className={cn(
                 "w-1.5 h-4 rounded",

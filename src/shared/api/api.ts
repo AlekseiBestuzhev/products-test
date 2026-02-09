@@ -1,13 +1,14 @@
+import axios, { type AxiosResponse } from "axios";
+import { tokenStorage } from "../lib";
 import type {
+  ProductsQueryParams,
   AddProductPayload,
+  UpdateProductData,
+  ProductsResponse,
   LoginPayload,
   MeResponse,
   Product,
-  ProductsQueryParams,
-  ProductsResponse,
 } from "./types";
-import axios, { type AxiosResponse } from "axios";
-import { tokenStorage } from "../lib";
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -96,5 +97,8 @@ export const productsAPI = {
   },
   add: async (data: AddProductPayload): Promise<AxiosResponse<Product>> => {
     return await axiosInstance.post("/products/add", data);
+  },
+  update: async ({ id, data }: UpdateProductData): Promise<AxiosResponse<Product>> => {
+    return await axiosInstance.patch(`/products/${id}`, data);
   },
 };
