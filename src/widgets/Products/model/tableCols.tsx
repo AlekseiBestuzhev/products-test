@@ -38,7 +38,12 @@ export const productsTableColumns = [
           <img src={p.images[0]} className="size-12 rounded bg-gray-200 object-cover shrink-0" />
 
           <div>
-            <EditableValue defaultValue={p.title} id={row.original.id} colName={FIELDS_COLS.TITLE}>
+            <EditableValue
+              defaultValue={p.title}
+              id={row.original.id}
+              colName={FIELDS_COLS.TITLE}
+              buttonClassName="text-left"
+            >
               <h6 className="font-bold">{p.title}</h6>
             </EditableValue>
 

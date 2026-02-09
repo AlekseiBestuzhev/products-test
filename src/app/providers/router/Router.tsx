@@ -1,18 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, Login, NotFound, InDev } from "@/pages";
+import { ProtectedRoute } from "./ProtectedRoute";
 import { ROUTE_PATH } from "@/shared/constants";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { AuthLayout } from "./LoginLayout";
 import { MainLayout } from "./MainLayout";
-import { AuthGuard } from "./AuthGuard";
 
 const router = createBrowserRouter([
   {
-    element: (
-      <ErrorBoundary>
-        <AuthGuard />
-      </ErrorBoundary>
-    ),
+    errorElement: <ErrorBoundary />,
     children: [
       {
         element: <AuthLayout />,
@@ -28,7 +24,11 @@ const router = createBrowserRouter([
         ],
       },
       {
-        element: <MainLayout />,
+        element: (
+          <ProtectedRoute>
+            <MainLayout />
+          </ProtectedRoute>
+        ),
         children: [
           {
             path: ROUTE_PATH.HOME,
