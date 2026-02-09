@@ -5,9 +5,9 @@ import { LoadingSpinner } from "@/shared/ui";
 import { Navigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ children }: PropsWithChildren) => {
-  const { isLoading, isError } = useCheckAuth();
+  const { isPending, isError } = useCheckAuth();
 
-  if (isLoading)
+  if (isPending)
     return (
       <div className="min-h-screen flex items-center justify-center">
         <LoadingSpinner />

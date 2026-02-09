@@ -8,23 +8,10 @@ import { toast } from "react-toastify";
 import { isAxiosError } from "axios";
 
 export const useCheckAuth = () => {
-  const navigate = useNavigate();
-
   return useQuery({
     queryKey: [QUERY_KEYS.USER],
-    queryFn: () =>
-      authAPI.me().catch(error => {
-        if (
-          isAxiosError(error) &&
-          error.response?.status === 401 &&
-          window.location.pathname !== ROUTE_PATH.LOGIN
-        ) {
-          navigate(ROUTE_PATH.LOGIN);
-          toast.error("Вы не авторизованы");
-        }
-
-        return Promise.reject(error);
-      }),
+    queryFn: () => authAPI.me(),
+    gcTime: 0,
   });
 };
 

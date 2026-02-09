@@ -58,8 +58,9 @@ export const EditableValue = ({ defaultValue, children, id, colName, buttonClass
         name="value"
         control={control}
         type={typeof defaultValue === "number" ? "number" : "text"}
-        className="min-w-30"
+        className="min-w-30 bg-white"
         isClearable={false}
+        autoFocus
       />
 
       <Button
