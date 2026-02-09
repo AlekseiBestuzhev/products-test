@@ -1,73 +1,27 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Описание:
 
-Currently, two official plugins are available:
+Приложение с авторизацией и поиском товаров. Реализовано сохранение постоянной и временной сессии с refreh tokens. На странице товаров доступен поиск, обновление, сортировка (отдельным выпадающим меню и по нажатию на название столбца в шапке таблицы), добавление товара, изменение отдельных полей, постраничный вывод, выбор элементов. Выполнено в соответсвии с ТЗ.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<hr>
 
-## React Compiler
+### Ссылки:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> [Техническое задание](https://docs.google.com/document/d/15Iq9gp4POgv7rw0-WFwSpIYmqS1IGBh0P0lYoNBwNbA/edit?tab=t.0#heading=h.99vax446mw92)
+>
+> [Макет в Figma](https://drive.google.com/file/d/1_AlUzuPv7tHzd1Ri13lFICv2We24xGpm/view?usp=sharing)
+>
+> [API](https://dummyjson.com/docs/products)
+>
+> [Деплой приложения](https://products-test-aiti.vercel.app/)
 
-## Expanding the ESLint configuration
+<hr>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Данные для входа:
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+> Имя пользователя:
+> emilys
+>
+> Пароль:
+> emilyspass
