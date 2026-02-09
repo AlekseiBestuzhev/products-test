@@ -38,6 +38,7 @@ export const SortSelect = () => {
       </Select.Trigger>
       <Select.Portal>
         <Select.Content
+          onCloseAutoFocus={e => e.preventDefault()}
           className="p-2 bg-white shadow-lg rounded z-999"
           position="popper"
           align="end"
