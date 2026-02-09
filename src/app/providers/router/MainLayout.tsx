@@ -1,8 +1,8 @@
 import type { ProductsQueryParams } from "@/shared/api";
-import { SearchInput } from "@/widgets/SearchInput";
 import { useQueryParams } from "@/shared/lib";
 import { Outlet } from "react-router-dom";
 import { Header } from "@/widgets/Header";
+import { SearchInput } from "@/shared/ui";
 import { useCallback } from "react";
 
 export const MainLayout = () => {

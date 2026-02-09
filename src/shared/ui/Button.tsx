@@ -11,7 +11,7 @@ const VARIANT = {
     "bg-[linear-gradient(to_bottom,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_100%)]",
     "bg-[linear-gradient(to_bottom,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_100%)]",
   ),
-  outlined: "bg-transparent text-gray-dark border-2 border-gray-dark hover:border-blue-primary",
+  outlined: "bg-transparent text-gray-400 border-2 border-gray-dark hover:border-blue-primary",
   ghost: "bg-transparent text-gray-500 hover:text-gray-600",
 } satisfies Record<ButtonVariant, string>;
 

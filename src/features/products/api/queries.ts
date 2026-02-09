@@ -1,5 +1,5 @@
 import { productsAPI, type ProductsQueryParams } from "@/shared/api";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/shared/constants";
 
 export const useGetProducts = (params: ProductsQueryParams) => {
@@ -10,5 +10,6 @@ export const useGetProducts = (params: ProductsQueryParams) => {
     ],
     queryFn: () => productsAPI.get(params),
     enabled: Object.keys(params).length > 0,
+    placeholderData: keepPreviousData,
   });
 };

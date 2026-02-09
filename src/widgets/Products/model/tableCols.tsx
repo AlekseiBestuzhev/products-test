@@ -1,5 +1,6 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { PlusIcon, ExtraIcon } from "@/shared/assets";
+import { getCategoryLabel } from "./categories";
 import { Checkbox, Button } from "@/shared/ui";
 import type { Product } from "@/shared/api";
 import { cn } from "@/shared/lib";
@@ -34,7 +35,7 @@ export const productsTableColumns = [
 
           <div>
             <h6 className="font-bold">{p.title}</h6>
-            <p className="text-sm text-gray-400">{p.category}</p>
+            <p className="text-sm text-gray-400">{getCategoryLabel(p.category)}</p>
           </div>
         </div>
       );
@@ -56,7 +57,10 @@ export const productsTableColumns = [
       const r = info.getValue();
       return (
         <p>
-          <span className={cn(r < 4 && "text-red-600")}>{r.toFixed(1)}</span>/5
+          <span className={cn(r < 4 && "text-red-600")}>
+            {(Math.floor(r * 10) / 10).toFixed(1)}
+          </span>
+          /5
         </p>
       );
     },
@@ -64,7 +68,19 @@ export const productsTableColumns = [
 
   columnHelper.accessor("price", {
     header: "Цена, ₽",
-    cell: info => `${info.getValue().toLocaleString("ru-RU")} ₽`,
+    cell: info => {
+      const [int, frac = "00"] = info
+        .getValue()
+        .toLocaleString("ru-RU", { minimumFractionDigits: 2 })
+        .split(",");
+
+      return (
+        <span>
+          {int}
+          <span className="text-gray-400">,{frac}</span>
+        </span>
+      );
+    },
   }),
 
   columnHelper.accessor("stock", {

@@ -1,8 +1,8 @@
+import { LoadingSpinner, Pagination, TopLoader } from "@/shared/ui";
 import type { ProductsQueryParams } from "@/shared/api";
 import { useGetProducts } from "@/features/products";
 import { ProductsTable } from "./ProductsTable";
 import { useQueryParams } from "@/shared/lib";
-import { LoadingSpinner } from "@/shared/ui";
 import { useEffect } from "react";
 
 export const Products = () => {
@@ -10,7 +10,7 @@ export const Products = () => {
   const { data, isLoading, isFetching } = useGetProducts(params);
 
   useEffect(() => {
-    if (!Object.keys(params).length) {
+    if (!Object.keys(params)?.length) {
       setParams({ skip: 0, limit: 10 });
     }
   }, []);
@@ -24,8 +24,14 @@ export const Products = () => {
 
   return (
     <div className="flex flex-col gap-10">
+      {isFetching && !isLoading && <TopLoader />}
       <ProductsTable products={data?.data?.products || []} isFetching={isFetching} />
-      {/* TODO pagination */}
+      <Pagination
+        total={data?.data?.total}
+        limit={data?.data?.limit}
+        skip={params?.skip}
+        onChange={skip => setParams({ skip })}
+      />
     </div>
   );
 };
