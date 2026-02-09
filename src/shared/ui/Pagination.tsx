@@ -50,7 +50,7 @@ export const Pagination = (props: PaginationProps) => {
     return { from, to };
   }, [skip, limit, total]);
 
-  if (pages <= 1) return null;
+  if (pages <= 1 || total === 0) return null;
 
   return (
     <div className="w-full flex items-center gap-6 justify-between">

@@ -1,1 +1,2 @@
-export { useGetProducts } from "./api/queries";
+export { useGetProducts, useAddProduct } from "./api/queries";
+export { AddProductRow } from "./ui/AddProductRow";

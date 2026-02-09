@@ -17,10 +17,13 @@ type GetRightSlotArgs = {
   onClear: () => void;
   onToggle: () => void;
   withLabel?: boolean;
+  isClearable?: boolean;
 };
 
-function getRightSlot({ isPassword, hasValue, onClear, onToggle, withLabel }: GetRightSlotArgs) {
-  if (!isPassword && !hasValue) return null;
+function getRightSlot(args: GetRightSlotArgs) {
+  const { isPassword, hasValue, onClear, onToggle, withLabel, isClearable } = args;
+
+  if (!isClearable || (!isPassword && !hasValue)) return null;
 
   return (
     <button
@@ -41,6 +44,7 @@ type Props = ComponentPropsWithoutRef<"input"> & {
   label?: string;
   error?: string;
   wrapperClassName?: string;
+  isClearable?: boolean;
 };
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
@@ -53,6 +57,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
     label,
     error,
     wrapperClassName,
+    isClearable = true,
     ...restProps
   } = props;
   const [visible, setVisible] = useState(false);
@@ -70,6 +75,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
   const rightSlot = getRightSlot({
     isPassword,
+    isClearable,
     hasValue: Boolean(value),
     onClear: clear,
     onToggle: () => setVisible(v => !v),

@@ -3,12 +3,13 @@ import { SORT_ORDER, type SortField, type SortOrder } from "@/shared/constants";
 import type { Product, ProductsQueryParams } from "@/shared/api";
 import { productsTableColumns } from "../model/tableCols";
 import { cn } from "@/shared/lib";
+import type { PropsWithChildren } from "react";
 
 const toggleSortOrder = (current?: SortOrder): SortOrder => {
   return current === SORT_ORDER.ASC ? SORT_ORDER.DESC : SORT_ORDER.ASC;
 };
 
-interface Props {
+interface Props extends PropsWithChildren {
   products?: Product[];
   isFetching?: boolean;
   sortBy?: SortField;
@@ -16,7 +17,8 @@ interface Props {
   setParams: (params: ProductsQueryParams) => void;
 }
 
-export const ProductsTable = ({ products, isFetching, sortBy, sortOrder, setParams }: Props) => {
+export const ProductsTable = (props: Props) => {
+  const { products, isFetching, sortBy, sortOrder, setParams, children } = props;
   const handleSort = (field: SortField) => {
     setParams({
       sortBy: field,
@@ -60,7 +62,10 @@ export const ProductsTable = ({ products, isFetching, sortBy, sortOrder, setPara
                     {isSortable ? (
                       <button
                         onClick={() => handleSort(field)}
-                        className={cn(isSortable && "cursor-pointer")}
+                        className={cn(
+                          "rounded outline-offset-3 :focus-visible:outline-blue-primary",
+                          isSortable && "cursor-pointer",
+                        )}
                       >
                         {columnTitle}
                       </button>
@@ -88,6 +93,7 @@ export const ProductsTable = ({ products, isFetching, sortBy, sortOrder, setPara
         </thead>
 
         <tbody>
+          {children}
           {table.getRowModel().rows.map(row => (
             <tr
               key={row.id}

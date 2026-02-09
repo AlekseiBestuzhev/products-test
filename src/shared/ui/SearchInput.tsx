@@ -25,7 +25,9 @@ export const SearchInput = memo((props: SearchInputProps) => {
   const debouncedValue = useDebounce(value, delay);
 
   useEffect(() => {
-    onChange(debouncedValue);
+    if (defaultValue !== debouncedValue) {
+      onChange(debouncedValue);
+    }
   }, [debouncedValue]);
 
   return (

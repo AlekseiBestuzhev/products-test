@@ -4,9 +4,11 @@ import { QUERY_KEYS } from "@/shared/constants";
 import { SortSelect } from "@/widgets/SortSelect";
 import { Products } from "@/widgets/Products";
 import { Button } from "@/shared/ui";
+import { useState } from "react";
 
 export const Home = () => {
   const invalidate = useInvalidateQueries();
+  const [isAdding, setIsAdding] = useState(false);
 
   return (
     <section className="flex flex-col gap-10">
@@ -21,12 +23,12 @@ export const Home = () => {
             <ReloadIcon />
           </Button>
           <SortSelect />
-          <Button>
+          <Button onClick={() => setIsAdding(true)}>
             <PlusCircleIcon /> Добавить
           </Button>
         </div>
       </div>
-      <Products />
+      <Products isAdding={isAdding} setIsAdding={setIsAdding} />
     </section>
   );
 };

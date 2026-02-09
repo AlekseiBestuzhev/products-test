@@ -44,3 +44,5 @@ export interface ProductsQueryParams {
   sortBy?: SortField;
   order?: SortOrder;
 }
+
+export type AddProductPayload = Pick<Product, "title" | "price" | "brand" | "sku">;
