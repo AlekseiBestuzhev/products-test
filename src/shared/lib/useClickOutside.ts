@@ -17,10 +17,10 @@ export const useClickOutside = ({ cb, isEnabled }: UseClickOutsideArgs) => {
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("pointerdown", handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("pointerdown", handleClickOutside);
     };
   }, [isEnabled]);
 
