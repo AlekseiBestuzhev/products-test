@@ -81,7 +81,7 @@ export const productsTableColumns = [
       const r = info.getValue();
       return (
         <p>
-          <span className={cn(r < 4 && "text-red-600")}>
+          <span className={cn(r < 3 && "text-red-600")}>
             {(Math.floor(r * 10) / 10).toFixed(1)}
           </span>
           /5
