@@ -1,3 +1,4 @@
+import { FIELDS_RUS, FIELDS_COLS } from "@/shared/constants";
 import { createColumnHelper } from "@tanstack/react-table";
 import { PlusIcon, ExtraIcon } from "@/shared/assets";
 import { getCategoryLabel } from "./categories";
@@ -11,6 +12,7 @@ export const productsTableColumns = [
   columnHelper.display({
     id: "select",
     size: 44,
+    enableSorting: false,
     header: ({ table }) => (
       <Checkbox
         checked={table.getIsAllRowsSelected()}
@@ -23,9 +25,10 @@ export const productsTableColumns = [
     ),
   }),
 
-  columnHelper.accessor("title", {
-    header: "Наименование",
+  columnHelper.accessor(FIELDS_COLS.TITLE, {
+    header: FIELDS_RUS[FIELDS_COLS.TITLE],
     size: 270,
+    enableSorting: true,
     cell: ({ row }) => {
       const p = row.original;
 
@@ -42,17 +45,20 @@ export const productsTableColumns = [
     },
   }),
 
-  columnHelper.accessor("brand", {
-    header: "Вендор",
+  columnHelper.accessor(FIELDS_COLS.BRAND, {
+    header: FIELDS_RUS[FIELDS_COLS.BRAND],
+    enableSorting: true,
     cell: info => <span className="font-bold">{info.getValue()}</span>,
   }),
 
   columnHelper.accessor("sku", {
     header: "Артикул",
+    enableSorting: false,
   }),
 
-  columnHelper.accessor("rating", {
-    header: "Оценка",
+  columnHelper.accessor(FIELDS_COLS.RATING, {
+    header: FIELDS_RUS[FIELDS_COLS.RATING],
+    enableSorting: true,
     cell: info => {
       const r = info.getValue();
       return (
@@ -66,8 +72,9 @@ export const productsTableColumns = [
     },
   }),
 
-  columnHelper.accessor("price", {
-    header: "Цена, ₽",
+  columnHelper.accessor(FIELDS_COLS.PRICE, {
+    header: FIELDS_RUS[FIELDS_COLS.PRICE],
+    enableSorting: true,
     cell: info => {
       const [int, frac = "00"] = info
         .getValue()
@@ -83,8 +90,9 @@ export const productsTableColumns = [
     },
   }),
 
-  columnHelper.accessor("stock", {
-    header: "Количество",
+  columnHelper.accessor(FIELDS_COLS.STOCK, {
+    header: FIELDS_RUS[FIELDS_COLS.STOCK],
+    enableSorting: true,
     cell: info => {
       const stock = info.getValue();
       return (
@@ -104,9 +112,10 @@ export const productsTableColumns = [
   }),
 
   columnHelper.display({
-    id: "actions",
-    header: "",
+    id: FIELDS_COLS.ACTIONS,
+    header: FIELDS_RUS[FIELDS_COLS.ACTIONS],
     size: 106,
+    enableSorting: false,
     cell: () => (
       <div className="flex gap-6 items-center w-fit">
         <Button size="sm" className="px-3 py-0">

@@ -1,8 +1,9 @@
-import { PlusCircleIcon, ReloadIcon, SortIcon } from "@/shared/assets";
-import { QUERY_KEYS } from "@/shared/constants";
+import { PlusCircleIcon, ReloadIcon } from "@/shared/assets";
 import { useInvalidateQueries } from "@/shared/lib";
-import { Button } from "@/shared/ui";
+import { QUERY_KEYS } from "@/shared/constants";
+import { SortSelect } from "@/widgets/SortSelect";
 import { Products } from "@/widgets/Products";
+import { Button } from "@/shared/ui";
 
 export const Home = () => {
   const invalidate = useInvalidateQueries();
@@ -19,9 +20,7 @@ export const Home = () => {
           >
             <ReloadIcon />
           </Button>
-          <Button variant="outlined" className="px-2">
-            <SortIcon />
-          </Button>
+          <SortSelect />
           <Button>
             <PlusCircleIcon /> Добавить
           </Button>

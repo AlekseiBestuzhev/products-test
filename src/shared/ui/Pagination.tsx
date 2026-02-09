@@ -45,7 +45,7 @@ export const Pagination = (props: PaginationProps) => {
   }, [current, pages, buttonCount]);
 
   const { from, to } = useMemo(() => {
-    const from = total === 0 ? 0 : skip + 1;
+    const from = total === 0 ? 0 : Number(skip) + 1;
     const to = Math.min(skip + limit, total);
     return { from, to };
   }, [skip, limit, total]);

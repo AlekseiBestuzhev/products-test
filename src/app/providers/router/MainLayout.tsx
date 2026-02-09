@@ -1,3 +1,4 @@
+import { DEFAULT_QUERY_PARAMS } from "@/shared/constants";
 import type { ProductsQueryParams } from "@/shared/api";
 import { useQueryParams } from "@/shared/lib";
 import { Outlet } from "react-router-dom";
@@ -7,7 +8,10 @@ import { useCallback } from "react";
 
 export const MainLayout = () => {
   const { params, setParams } = useQueryParams<ProductsQueryParams>();
-  const handleSearch = useCallback((q: string) => setParams({ q }), [setParams]);
+  const handleSearch = useCallback(
+    (q: string) => setParams({ q, ...DEFAULT_QUERY_PARAMS }),
+    [setParams],
+  );
 
   return (
     <div className="min-h-screen flex flex-col gap-8 p-5 max-w-490 m-auto ">

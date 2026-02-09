@@ -26,7 +26,7 @@ export const SearchInput = memo((props: SearchInputProps) => {
 
   useEffect(() => {
     onChange(debouncedValue);
-  }, [debouncedValue, onChange]);
+  }, [debouncedValue]);
 
   return (
     <Input

@@ -1,3 +1,5 @@
+import type { SortField, SortOrder } from "../constants/params";
+
 export interface MeResponse {
   id: number;
   username: string;
@@ -36,7 +38,9 @@ export interface ProductsResponse {
 }
 
 export interface ProductsQueryParams {
-  q: string;
+  q?: string;
   skip: number;
   limit: number;
+  sortBy?: SortField;
+  order?: SortOrder;
 }
